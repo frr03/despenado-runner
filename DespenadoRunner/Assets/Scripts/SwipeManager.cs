@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class SwipeManager : MonoBehaviour
 {
-    public static bool tap, swipeLeft, swipeRight, swipeUp, swipeDown;
+    public static bool tap, tap4, tap5 , swipeLeft, swipeRight, swipeUp, swipeDown;
     private bool isDraging = false;
     private Vector2 startTouch, swipeDelta;
 
     private void Update()
     {
-        tap = swipeDown = swipeUp = swipeLeft = swipeRight = false;
+        tap = tap4 = tap5 = swipeDown = swipeUp = swipeLeft = swipeRight = false;
         
         if (Input.GetMouseButtonDown(0))
         {
@@ -37,6 +37,18 @@ public class SwipeManager : MonoBehaviour
                 isDraging = false;
                 Reset();
             }
+        }
+
+        if ((Input.touchCount == 4 && Input.GetTouch(3).phase == TouchPhase.Began) || (Input.GetKeyDown("r")))
+        {
+            tap4 = true;
+            Debug.Log("Mudou de fase");
+        }
+
+        if ((Input.touchCount == 5 && Input.GetTouch(4).phase == TouchPhase.Began) || (Input.GetKeyDown("e")))
+        {
+            tap5 = true;
+            //Debug.Log("Vidas infinitas");
         }
 
         //calcular distancia

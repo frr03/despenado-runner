@@ -10,14 +10,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Obstaculo"))
-        {
-            _hc.TakeDamage(1);
-            df.tookDamage = true;
-            FindObjectOfType<AudioManager>().Play("PlayerHurt");
-            Destroy(other.gameObject);
-        }
-
         if (other.CompareTag("Pontuador"))
         {
             Pontos.QtdPts += 2;
@@ -46,6 +38,19 @@ public class PlayerController : MonoBehaviour
                 FindObjectOfType<AudioManager>().Play("Item");
                 Destroy(other.gameObject);
             }
+        }
+
+        if (other.CompareTag("Obstaculo"))
+        {
+            _hc.TakeDamage(1);
+            df.tookDamage = true;
+            FindObjectOfType<AudioManager>().Play("PlayerHurt");
+            Destroy(other.gameObject);
+        }
+
+        if (other.CompareTag("InstaKill"))
+        {
+            _hc.Instakill();
         }
     }
 }
