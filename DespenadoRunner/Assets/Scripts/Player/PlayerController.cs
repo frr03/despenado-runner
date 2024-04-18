@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private HealthController _hc;
     [SerializeField] private GameManager gameManager;
 
+    public GameObject PauseButton;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Pontuador"))
@@ -19,6 +21,7 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Limite"))
         {
             Time.timeScale = 0f;
+            PauseButton.SetActive(false);
             FindObjectOfType<AudioManager>().Play("Vitoria");
             gameManager.Vitoria();
         }

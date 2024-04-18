@@ -11,6 +11,8 @@ public class HealthController : MonoBehaviour
 
     public TextMeshProUGUI lifeText;
 
+    public GameObject PauseButton;
+
     public GameManager gameManager;
 
     private bool cheat = false;
@@ -34,6 +36,7 @@ public class HealthController : MonoBehaviour
         if (currentLifes <= 0)
         {
             Time.timeScale = 0f;
+            PauseButton.SetActive(false);
             FindObjectOfType<AudioManager>().Play("Waterphone");
             gameManager.Derrota();
         }
@@ -46,6 +49,7 @@ public class HealthController : MonoBehaviour
         if (currentLifes <= 0)
         {
             Time.timeScale = 0f;
+            PauseButton.SetActive(false);
             FindObjectOfType<AudioManager>().Play("Waterphone");
             gameManager.Derrota();
         }
