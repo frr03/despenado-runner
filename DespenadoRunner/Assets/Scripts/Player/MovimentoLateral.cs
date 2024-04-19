@@ -13,8 +13,8 @@ public class MovimentoLateral : MonoBehaviour
     SphereCollider SC;
 
     private int pista = 1; //posicao inicial | pista 0 = pista direita | pista 1 = pista meio | pista 2 = pista esquerda
-    [SerializeField] private float velocidade = 5; //velocidade do player
-    public float distancia = 3; //distancia entre pistas
+    [SerializeField] private float velocidade; //velocidade do player
+    public float distancia; //distancia entre pistas
     public float[] lanes = new float[3] { -3f, 0f, 3f }; //coordenadas das pistas
     public float Pulo = 400f; //força do pulo
     private float currentTime = 0f; //temporizador
@@ -187,5 +187,22 @@ public class MovimentoLateral : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region // Velocidades
+    public void VelocidadeNormal()
+    {
+        velocidade = 9;
+    }
+
+    public void VelocidadeBoost()
+    {
+        velocidade = 12;
+    }
+
+    public void VelocidadeDown()
+    {
+        velocidade = 6;
+    }
     #endregion
 }
