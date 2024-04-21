@@ -18,7 +18,7 @@ public class MenuConfig : MonoBehaviour
 
     public void SetVolume(float volume)
     {
-        audioMixer.SetFloat("Volume", Mathf.Log10(volume) * 20);
+        audioMixer.SetFloat("volume", Mathf.Log10(volume) * 20);
 
         PlayerPrefs.SetFloat("SavedVolume", volume);
         PlayerPrefs.Save();
