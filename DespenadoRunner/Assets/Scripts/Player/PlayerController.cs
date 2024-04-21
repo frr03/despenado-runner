@@ -72,6 +72,7 @@ public class PlayerController : MonoBehaviour
         {
             milho = 1;
             count_M = 1.5f;
+            FindObjectOfType<AudioManager>().Play("Speed");
             Destroy(other.gameObject);
         }
         else if (other.CompareTag("Pontuador"))
