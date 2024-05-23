@@ -4,21 +4,26 @@ using UnityEngine;
 
 public class DamageFeedback : MonoBehaviour
 {
-    MeshRenderer meshRenderer;
-    Color origColor; //Mat Original
-    float flashTime = 0.15f; //Tempo do flash
+    SkinnedMeshRenderer skinnedMeshRenderer;
+    List<Color> origColors = new List<Color>(); // List to store original colors
+    float flashTime = 0.15f; // Flash duration
 
     public bool tookDamage = false;
 
     void Start()
     {
-        meshRenderer = GetComponent<MeshRenderer>();
-        origColor = meshRenderer.material.color;
+        skinnedMeshRenderer = GetComponent<SkinnedMeshRenderer>();
+
+        // Store the original colors of all materials
+        foreach (var mat in skinnedMeshRenderer.materials)
+        {
+            origColors.Add(mat.color);
+        }
     }
 
     void Update()
     {
-        if (tookDamage == true)
+        if (tookDamage)
         {
             StartCoroutine(EFlash());
         }
@@ -26,20 +31,39 @@ public class DamageFeedback : MonoBehaviour
 
     void FlashStart()
     {
-        meshRenderer.material.color = Color.red;
+        // Set all materials to red
+        foreach (var mat in skinnedMeshRenderer.materials)
+        {
+            mat.color = Color.red;
+        }
         Invoke("FlashStop", flashTime);
     }
 
     void FlashStop()
     {
-        meshRenderer.material.color = origColor;
+        // Restore original colors
+        for (int i = 0; i < skinnedMeshRenderer.materials.Length; i++)
+        {
+            skinnedMeshRenderer.materials[i].color = origColors[i];
+        }
     }
 
     IEnumerator EFlash()
     {
-        meshRenderer.material.color = Color.red;
+        // Set all materials to red
+        foreach (var mat in skinnedMeshRenderer.materials)
+        {
+            mat.color = Color.red;
+        }
+
         yield return new WaitForSeconds(flashTime);
-        meshRenderer.material.color = origColor;
+
+        // Restore original colors
+        for (int i = 0; i < skinnedMeshRenderer.materials.Length; i++)
+        {
+            skinnedMeshRenderer.materials[i].color = origColors[i];
+        }
+
         tookDamage = false;
     }
 }

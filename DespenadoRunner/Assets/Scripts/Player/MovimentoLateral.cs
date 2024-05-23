@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MovimentoLateral : MonoBehaviour
 {
-    #region //Variáveis
+    #region //Variï¿½veis
 
     [SerializeField] Rigidbody RB; //fazendo contato com o rigidbody
     [SerializeField] LayerMask groundMask; //fazendo contato com a layermask
@@ -16,12 +16,17 @@ public class MovimentoLateral : MonoBehaviour
     [SerializeField] private float velocidade; //velocidade do player
     public float distancia; //distancia entre pistas
     public float[] lanes = new float[3] { -3f, 0f, 3f }; //coordenadas das pistas
-    public float Pulo = 400f; //força do pulo
+    public float Pulo = 400f; //forï¿½a do pulo
     private float currentTime = 0f; //temporizador
+    Vector3 _startPoition;
+    Vector3 _endPosition;
+    private float _startTime;
+    private float _Legnth;
 
-    private bool pisandoNoChao; //variavel para verificar se o Player está pisando no chão
-    private bool rasteira; //variavel para verificar se o Player está dando uma rasteira
-    private bool isTimerRunning = false; //variavel para verificar se o temporizador da rasteira está ativo
+    private bool pisandoNoChao; //variavel para verificar se o Player estï¿½ pisando no chï¿½o
+    private bool rasteira; //variavel para verificar se o Player estï¿½ dando uma rasteira
+    private bool isTimerRunning = false; //variavel para verificar se o temporizador da rasteira estï¿½ ativo
+    private bool _isMoving;
 
     #endregion
 
@@ -34,10 +39,23 @@ public class MovimentoLateral : MonoBehaviour
 
     void Update()
     {
-        //Impede player de mover após perder
+        //Impede player de mover apï¿½s perder
         if (Time.timeScale <= 0)
         {
             return;
+        }
+
+        if (_isMoving)
+        {
+            float Covered = (Time.time - _startTime) * velocidade;
+
+            float Journey = Covered / _Legnth;
+            transform.position = Vector3.Lerp(_startPoition, _endPosition + Vector3.forward * (velocidade / 3), Journey);
+
+            if (Journey >= 1f)
+            {
+                _isMoving = false;
+            }
         }
 
         #region //Swipes
@@ -45,7 +63,7 @@ public class MovimentoLateral : MonoBehaviour
         //movimento para a esquerda
         if (SwipeManager.swipeLeft)
         {
-            pista--;
+            /*pista--;
             if (pista == -1)
             {
                 pista = 0;
@@ -53,13 +71,15 @@ public class MovimentoLateral : MonoBehaviour
             transform.position += Vector3.left * 3;
 
             float newX = lanes[pista];
-            transform.position = new Vector3(newX, transform.position.y, transform.position.z);
+            transform.position = new Vector3(newX, transform.position.y, transform.position.z);*/
+
+            MoveLeft();
         }
 
         //movimento para a direita
         if (SwipeManager.swipeRight)
         {
-            pista++;
+            /*pista++;
             if (pista == 3)
             {
                 pista = 2;
@@ -67,7 +87,9 @@ public class MovimentoLateral : MonoBehaviour
             transform.position += Vector3.right * 3;
 
             float newX = lanes[pista];
-            transform.position = new Vector3(newX, transform.position.y, transform.position.z);
+            transform.position = new Vector3(newX, transform.position.y, transform.position.z);*/
+
+            MoveRight();
         }
 
         //pulo
@@ -111,17 +133,51 @@ public class MovimentoLateral : MonoBehaviour
         }
     }
 
-    //verificando se o player está no chão
+    private void CalculateMovement()
+    {
+        _isMoving = true;
+        _startPoition = transform.position;
+        _endPosition = new Vector3(lanes[pista], transform.position.y, transform.position.z);
+        _startTime = Time.time;
+        _Legnth = Vector3.Distance(_startPoition, _endPosition);
+    }
+
+    private void MoveLeft()
+    {
+        if (_isMoving == false)
+        {
+            pista--;
+            if(pista == -1)
+            {
+                pista = 0;
+            }
+        }
+        CalculateMovement();
+    }
+
+    private void MoveRight()
+    {
+        if (_isMoving == false)
+        {
+            pista++;
+            if (pista == 3)
+            {
+                pista = 2;
+            }
+        }
+        CalculateMovement();
+    }
+
+    //verificando se o player estï¿½ no chï¿½o
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Chao"))
         {
             pisandoNoChao = true;
-            //Debug.Log("No chão");
         }
     }
 
-    //método pulo
+    //mï¿½todo pulo
     void Jump()
     {
         float altura = GetComponent<Collider>().bounds.size.y;
@@ -129,7 +185,7 @@ public class MovimentoLateral : MonoBehaviour
         RB.AddForce(Vector3.up * Pulo);
     }
 
-    #region //Métodos temporizador/rasteira
+    #region //Mï¿½todos temporizador/rasteira
 
     //atualiza o temporizador
     void UpdateTimer()
@@ -183,7 +239,7 @@ public class MovimentoLateral : MonoBehaviour
             CC.enabled = true;
             SC.enabled = false;
 
-            Debug.Log("em pé");
+            Debug.Log("em pï¿½");
         }
     }
 

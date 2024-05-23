@@ -33,4 +33,11 @@ public class GameManager : MonoBehaviour
         Application.Quit();
         Debug.Log("fechou o jogo.");
     }
+
+    public void MudarFase()
+    {
+        int Cena = SceneManager.GetActiveScene().buildIndex;
+
+        SceneManager.LoadScene(Cena + 1);
+    }
 }
