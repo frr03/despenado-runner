@@ -8,6 +8,10 @@ TagManager:
   - Pontuador
   - Item
   - Limite
+  - Chao
+  - InstaKill
+  - Milho
+  - Egg
   layers:
   - Default
   - TransparentFX
