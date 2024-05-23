@@ -16,6 +16,11 @@ public class PlayerController : MonoBehaviour
     public float count_M;
     public float milho;
 
+    // PowerUp Escudo
+    public float count_e;
+    public float res;
+    public GameObject escudo;
+
     // Perder Velocidade ao tomar Dano
     private bool speedDown = false;
     public float count_D;
@@ -36,6 +41,26 @@ public class PlayerController : MonoBehaviour
         {
             ml.VelocidadeNormal();
         }
+
+        #region // ESCUDO
+        
+        if (res == 1)
+        {
+            escudo.SetActive(true);
+            if (count_e <= 0)
+            {
+                FindObjectOfType<AudioManager>().Play("ShieldDestroy");
+                res = 0;
+                count_e = -1f;
+            }
+            count_e -= Time.deltaTime;
+        }
+        else if (res == 0)
+        {
+            escudo.SetActive(false);
+        }
+
+        #endregion
 
         #region // MILHO
         if (milho == 1)
@@ -75,19 +100,29 @@ public class PlayerController : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("Speed");
             Destroy(other.gameObject);
         }
-        else if (other.CompareTag("Pontuador"))
+        
+        if (other.CompareTag("Egg"))
+        {
+            res = 1;
+            count_e = 5f;
+            Destroy(other.gameObject);
+        }
+        
+        if (other.CompareTag("Pontuador"))
         {
             Pontos.QtdPts += 2;
             Destroy(other.gameObject);
         }
-        else if (other.CompareTag("Limite"))
+        
+        if (other.CompareTag("Limite"))
         {
             Time.timeScale = 0f;
             PauseButton.SetActive(false);
             FindObjectOfType<AudioManager>().Play("Vitoria");
             gameManager.Vitoria();
         }
-        else if (other.CompareTag("Item"))
+        
+        if (other.CompareTag("Item"))
         {
             if (_hc.currentLifes <= 2)
             {
@@ -100,17 +135,28 @@ public class PlayerController : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("Item");
             Destroy(other.gameObject);
         }
-        else if (other.CompareTag("Obstaculo"))
+        
+        if (other.CompareTag("Obstaculo"))
         {
-            _hc.TakeDamage(1);
-            df.tookDamage = true;
-            FindObjectOfType<AudioManager>().Play("PlayerHurt");
-            Destroy(other.gameObject);
+            if (res == 1)
+            {
+                res = 0;
+                Destroy(other.gameObject);
+            }
 
-            getHit = 1;
-            count_D = 1f;
+            else if (res == 0)
+            {
+                _hc.TakeDamage(1);
+                df.tookDamage = true;
+                FindObjectOfType<AudioManager>().Play("PlayerHurt");
+                Destroy(other.gameObject);
+
+                getHit = 1;
+                count_D = 1f;
+            }
         }
-        else if (other.CompareTag("InstaKill"))
+        
+        if (other.CompareTag("InstaKill"))
         {
             _hc.Instakill();
         }
