@@ -39,5 +39,7 @@ public class GameManager : MonoBehaviour
         int Cena = SceneManager.GetActiveScene().buildIndex;
 
         SceneManager.LoadScene(Cena + 1);
+
+        Time.timeScale = 1f;
     }
 }
