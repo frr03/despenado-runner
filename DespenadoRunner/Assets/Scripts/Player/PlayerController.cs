@@ -63,7 +63,6 @@ public class PlayerController : MonoBehaviour
             count_e -= Time.deltaTime;
             if (count_e <= 0)
             {
-                audioManager.Play("ShieldDestroy");
                 hasShield = false;
                 escudo.SetActive(false);
             }
