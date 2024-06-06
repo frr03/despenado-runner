@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/menu.unity
     guid: 5a34dcf90d7e8c24eaa057b8c3286dce
   - enabled: 1
-    path: Assets/Scenes/faseDEV.unity
-    guid: e4ed138d42843ef40b74a10682b2cf89
+    path: Assets/Scenes/Cidade.unity
+    guid: 4fcfdc71ec9e18a4cbaf399bf6802efb
+  - enabled: 1
+    path: Assets/Scenes/Fazenda.unity
+    guid: 468dd8267a8f7f74d9d9126c29d365a6
   m_configObjects: {}
