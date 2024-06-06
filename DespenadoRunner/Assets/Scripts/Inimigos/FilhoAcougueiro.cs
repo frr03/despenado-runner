@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FilhoAcougueiro : MonoBehaviour
 {
+    [SerializeField] private FilhoMov _fm;
     public GameObject[] HitBoxes;
 
     private void OnTriggerEnter(Collider other)
@@ -18,9 +19,11 @@ public class FilhoAcougueiro : MonoBehaviour
                 {
                     HitBoxes[1].SetActive(true);
                 }
-
-                Destroy(gameObject);
             }
+
+            _fm.FilhoMovement();
         }
+
+        Destroy(gameObject);
     }
 }
