@@ -123,6 +123,17 @@ public class PlayerController : MonoBehaviour
             case "InstaKill":
                 _hc.Instakill();
                 break;
+            case "Vida":
+                if (_hc.currentLifes <= 4)
+                {
+                    _hc.GainHealth(1);
+                }
+                //else
+                //{
+                    //Pontos.QtdPts += 11;
+                //}
+                Destroy(other.gameObject);
+                break;
         }
     }
 

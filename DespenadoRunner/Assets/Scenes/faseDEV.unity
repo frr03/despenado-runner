@@ -12411,6 +12411,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1629130086}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &1631140046 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 245186696112697371, guid: 75016e80616ba7d4ea864425cb251d6e, type: 3}
+  m_PrefabInstance: {fileID: 5037592076855075932}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1661247670 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9072787105307780098, guid: 8cb99a9a2dbb92448b2e6e35c925c1f2, type: 3}
@@ -16530,6 +16535,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0669ea12982ec65439bc89c4bee3a124, type: 3}
+--- !u!1001 &4163369228618702956
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2762534435272838955, guid: 512fe5ae669f32746b80dc6933ea8f8a, type: 3}
+      propertyPath: m_Name
+      value: PowerUpPENA
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309659634751803254, guid: 512fe5ae669f32746b80dc6933ea8f8a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309659634751803254, guid: 512fe5ae669f32746b80dc6933ea8f8a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309659634751803254, guid: 512fe5ae669f32746b80dc6933ea8f8a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 17.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309659634751803254, guid: 512fe5ae669f32746b80dc6933ea8f8a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309659634751803254, guid: 512fe5ae669f32746b80dc6933ea8f8a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309659634751803254, guid: 512fe5ae669f32746b80dc6933ea8f8a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309659634751803254, guid: 512fe5ae669f32746b80dc6933ea8f8a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309659634751803254, guid: 512fe5ae669f32746b80dc6933ea8f8a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309659634751803254, guid: 512fe5ae669f32746b80dc6933ea8f8a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309659634751803254, guid: 512fe5ae669f32746b80dc6933ea8f8a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 512fe5ae669f32746b80dc6933ea8f8a, type: 3}
 --- !u!1001 &5037592076855075932
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16538,6 +16600,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 581244272664291756, guid: 75016e80616ba7d4ea864425cb251d6e, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 1631140046}
+    - target: {fileID: 581244272664291756, guid: 75016e80616ba7d4ea864425cb251d6e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 742580488962853579, guid: 75016e80616ba7d4ea864425cb251d6e, type: 3}
       propertyPath: PauseButton
       value: 
@@ -16550,10 +16620,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2505337681230914500, guid: 75016e80616ba7d4ea864425cb251d6e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3645968513243507344, guid: 75016e80616ba7d4ea864425cb251d6e, type: 3}
       propertyPath: lifeText
       value: 
       objectReference: {fileID: 2092466262}
+    - target: {fileID: 3645968513243507344, guid: 75016e80616ba7d4ea864425cb251d6e, type: 3}
+      propertyPath: maxLifes
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3645968513243507344, guid: 75016e80616ba7d4ea864425cb251d6e, type: 3}
       propertyPath: PauseButton
       value: 
@@ -16619,6 +16697,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1661247670}
     - target: {fileID: 5847588745311963557, guid: 75016e80616ba7d4ea864425cb251d6e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5847588745311963557, guid: 75016e80616ba7d4ea864425cb251d6e, type: 3}
       propertyPath: PauseButton
       value: 
       objectReference: {fileID: 441718218}
@@ -16626,6 +16708,10 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1617399226}
+    - target: {fileID: 6906178034902461852, guid: 75016e80616ba7d4ea864425cb251d6e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -16784,3 +16870,4 @@ SceneRoots:
   - {fileID: 1503036340}
   - {fileID: 6430124906107762114}
   - {fileID: 2568287208381389953}
+  - {fileID: 4163369228618702956}
