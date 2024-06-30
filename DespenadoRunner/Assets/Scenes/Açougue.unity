@@ -20753,7 +20753,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: BGM
     clip: {fileID: 8300000, guid: 17e88c8af971aa9418ec42c6836ee3b3, type: 3}
-    volume: 0.15
+    volume: 0.2
     volumeVariance: 0
     pitch: 1.05
     pitchVariance: 0
@@ -20816,7 +20816,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Crouch
     clip: {fileID: 8300000, guid: 6d9a091c4b98aca4ca5842eb048e55fa, type: 3}
-    volume: 0.15
+    volume: 0.2
     volumeVariance: 0
     pitch: 3
     pitchVariance: 0
