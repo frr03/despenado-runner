@@ -3717,6 +3717,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 617941532}
   m_CullTransparentMesh: 1
+--- !u!114 &646364632 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3700713981550531080, guid: 75016e80616ba7d4ea864425cb251d6e, type: 3}
+  m_PrefabInstance: {fileID: 5037592076855075932}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b21e69f204b20d441a32dd65e8f6d2fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &658459117
 GameObject:
   m_ObjectHideFlags: 0
@@ -5767,6 +5778,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: a496317325356c04c95fbc1b95ecc1bf, type: 2}
+  volumeSlider: {fileID: 203209126}
 --- !u!1 &932137815 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3039436352908174348, guid: 8cb99a9a2dbb92448b2e6e35c925c1f2, type: 3}
@@ -7550,6 +7562,11 @@ Transform:
   - {fileID: 1193201463}
   m_Father: {fileID: 823710396}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1139373718 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8298380230078282223, guid: 75016e80616ba7d4ea864425cb251d6e, type: 3}
+  m_PrefabInstance: {fileID: 5037592076855075932}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1153339582
 GameObject:
   m_ObjectHideFlags: 0
@@ -15440,7 +15457,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1935225329
 Transform:
   m_ObjectHideFlags: 0
@@ -16605,6 +16622,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1631140046}
     - target: {fileID: 581244272664291756, guid: 75016e80616ba7d4ea864425cb251d6e, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1139373718}
+    - target: {fileID: 581244272664291756, guid: 75016e80616ba7d4ea864425cb251d6e, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -16681,6 +16702,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5847588745311963557, guid: 75016e80616ba7d4ea864425cb251d6e, type: 3}
+      propertyPath: df
+      value: 
+      objectReference: {fileID: 646364632}
+    - target: {fileID: 5847588745311963557, guid: 75016e80616ba7d4ea864425cb251d6e, type: 3}
       propertyPath: escudo
       value: 
       objectReference: {fileID: 183282752}
@@ -16696,6 +16721,10 @@ PrefabInstance:
       propertyPath: HitBoxM
       value: 
       objectReference: {fileID: 1661247670}
+    - target: {fileID: 5847588745311963557, guid: 75016e80616ba7d4ea864425cb251d6e, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1139373718}
     - target: {fileID: 5847588745311963557, guid: 75016e80616ba7d4ea864425cb251d6e, type: 3}
       propertyPath: m_Enabled
       value: 1

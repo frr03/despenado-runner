@@ -4,30 +4,34 @@ using UnityEngine;
 
 public class MovimentoLateral : MonoBehaviour
 {
-    #region Variables
+    #region Variaveis
+    [SerializeField] private Animator animator;
 
-    [SerializeField] private Rigidbody rb; // Rigidbody reference
-    [SerializeField] private LayerMask groundMask; // LayerMask reference
+    [SerializeField] private Rigidbody rb;
+    [SerializeField] private LayerMask groundMask;
 
     private BoxCollider boxCollider;
     private CapsuleCollider capsuleCollider;
     private SphereCollider sphereCollider;
 
-    private int pista = 1; // Initial lane position
-    [SerializeField] private float velocidade; // Player speed
-    public float distancia; // Distance between lanes
-    public float[] lanes = new float[3] { -3f, 0f, 3f }; // Lane coordinates
-    public float pulo = 400f; // Jump force
-    private float currentTime = 0f; // Timer
+    private int pista = 1;
+    [SerializeField] private float velocidade; // velocidade player
+    public float distancia; // distancia entre pistas
+    public float[] lanes = new float[3] { -3f, 0f, 3f }; // pistas
+    public float pulo = 400f; // forca pulo
+    private float currentTime = 0f; // timer
     private Vector3 startPosition;
     private Vector3 endPosition;
     private float startTime;
     private float length;
 
-    private bool pisandoNoChao; // Is the player on the ground?
-    private bool rasteira; // Is the player sliding?
-    private bool isTimerRunning = false; // Is the slide timer running?
+    private bool pisandoNoChao; // player no chao
+    private bool rasteira; // rasteira
+    private bool isTimerRunning = false; // timer rasteira
     private bool isMoving;
+
+    private float jumpCooldown = 1.5f; // cooldown duration
+    private float lastJumpTime = -1.5f; // tracks the last jump time
 
     #endregion
 
@@ -118,9 +122,14 @@ public class MovimentoLateral : MonoBehaviour
 
     private void Jump()
     {
-        float altura = GetComponent<Collider>().bounds.size.y;
-        bool noChao = Physics.Raycast(transform.position, Vector3.down, (altura / 2) * 0.1f, groundMask);
-        rb.AddForce(Vector3.up * pulo);
+        if (Time.time >= lastJumpTime + jumpCooldown)
+        {
+            float altura = GetComponent<Collider>().bounds.size.y;
+            bool noChao = Physics.Raycast(transform.position, Vector3.down, (altura / 2) * 0.1f, groundMask);
+            rb.AddForce(Vector3.up * pulo);
+            animator.SetTrigger("Pulo");
+            lastJumpTime = Time.time;
+        }
     }
 
     private void StartSlide()
@@ -158,6 +167,7 @@ public class MovimentoLateral : MonoBehaviour
 
         capsuleCollider.enabled = false;
         sphereCollider.enabled = true;
+        animator.SetTrigger("Agachar");
     }
 
     private void StopTimer()

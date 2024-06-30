@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private Animator animator;
+
     [SerializeField] private DamageFeedback df;
     [SerializeField] private HealthController _hc;
     [SerializeField] private GameManager gameManager;
@@ -186,6 +188,7 @@ public class PlayerController : MonoBehaviour
 
             speedDown = true;
             count_D = 1f;
+            animator.SetTrigger("Dano");
         }
     }
 }

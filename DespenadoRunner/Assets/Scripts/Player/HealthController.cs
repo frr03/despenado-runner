@@ -12,6 +12,8 @@ public class HealthController : MonoBehaviour
     public TextMeshProUGUI lifeText;
 
     public GameObject PauseButton;
+    
+    public GameObject Acougueiro;
 
     public GameManager gameManager;
 
@@ -37,7 +39,7 @@ public class HealthController : MonoBehaviour
         {
             Time.timeScale = 0f;
             PauseButton.SetActive(false);
-            FindObjectOfType<AudioManager>().Play("Waterphone");
+            FindObjectOfType<AudioManager>().Play("Death");
             gameManager.Derrota();
         }
     }
@@ -50,7 +52,7 @@ public class HealthController : MonoBehaviour
         {
             Time.timeScale = 0f;
             PauseButton.SetActive(false);
-            FindObjectOfType<AudioManager>().Play("Waterphone");
+            FindObjectOfType<AudioManager>().Play("Death");
             gameManager.Derrota();
         }
     }
@@ -72,7 +74,8 @@ public class HealthController : MonoBehaviour
         if (SwipeManager.tap5)
         {
             Debug.Log("Cheat de vidas infinitas abilitado.");
-            lifeText.text = "inf";
+            lifeText.text = "--";
+            Destroy(Acougueiro);
             cheat = true;
         }
     }
