@@ -13,6 +13,7 @@ public class FilhoMov : MonoBehaviour
     public void FilhoMovement()
     {
         StartCoroutine(MovimentoFilho(Filho, posicaoFinal, moveDuration));
+        FindObjectOfType<AudioManager>().Play("FilhoRun");
     }
 
     private IEnumerator MovimentoFilho(GameObject obj, Vector3 targetPos, float duration)

@@ -1,51 +1,54 @@
-using UnityEngine.Audio;
 using System;
+using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager instance;
+    public AudioMixerGroup mixerGroup;
+    public Sound[] sounds;
 
-	public static AudioManager instance;
+    void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+        }
 
-	public AudioMixerGroup mixerGroup;
+        else
+        {
+            instance = this;
+        }
 
-	public Sound[] sounds;
+        foreach (Sound s in sounds)
+        {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+            s.source.loop = s.loop;
 
-	void Awake()
-	{
-		if (instance != null)
-		{
-			Destroy(gameObject);
-		}
-		else
-		{
-			instance = this;
-			DontDestroyOnLoad(gameObject);
-		}
+            s.source.outputAudioMixerGroup = mixerGroup;
+        }
+    }
 
-		foreach (Sound s in sounds)
-		{
-			s.source = gameObject.AddComponent<AudioSource>();
-			s.source.clip = s.clip;
-			s.source.loop = s.loop;
+    void Start()
+    {
+        Play("BGM");
+    }
 
-			s.source.outputAudioMixerGroup = mixerGroup;
-		}
-	}
+    public void Play(string sound)
+    {
+        Sound s = Array.Find(sounds, item => item.name == sound);
 
-	public void Play(string sound)
-	{
-		Sound s = Array.Find(sounds, item => item.name == sound);
-		if (s == null)
-		{
-			Debug.LogWarning("Sound: " + name + " not found!");
-			return;
-		}
+        if (s == null)
+        {
+            return;
+        }
 
-		s.source.volume = s.volume * (1f + UnityEngine.Random.Range(-s.volumeVariance / 2f, s.volumeVariance / 2f));
-		s.source.pitch = s.pitch * (1f + UnityEngine.Random.Range(-s.pitchVariance / 2f, s.pitchVariance / 2f));
+        s.source.volume = s.volume * (1f + UnityEngine.Random.Range(-s.volumeVariance / 2f, s.volumeVariance / 2f));
+        s.source.pitch = s.pitch * (1f + UnityEngine.Random.Range(-s.pitchVariance / 2f, s.pitchVariance / 2f));
 
-		s.source.Play();
-	}
+        s.source.Play();
+    }
 
 }

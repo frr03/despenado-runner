@@ -127,6 +127,7 @@ public class MovimentoLateral : MonoBehaviour
             float altura = GetComponent<Collider>().bounds.size.y;
             bool noChao = Physics.Raycast(transform.position, Vector3.down, (altura / 2) * 0.1f, groundMask);
             rb.AddForce(Vector3.up * pulo);
+            FindObjectOfType<AudioManager>().Play("Jump");
             animator.SetTrigger("Pulo");
             lastJumpTime = Time.time;
         }
@@ -168,6 +169,7 @@ public class MovimentoLateral : MonoBehaviour
         capsuleCollider.enabled = false;
         sphereCollider.enabled = true;
         animator.SetTrigger("Agachar");
+        FindObjectOfType<AudioManager>().Play("Crouch");
     }
 
     private void StopTimer()

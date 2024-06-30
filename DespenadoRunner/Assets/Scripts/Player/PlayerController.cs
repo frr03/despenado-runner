@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour
             count_e -= Time.deltaTime;
             if (count_e <= 0)
             {
+                FindObjectOfType<AudioManager>().Play("PowerEnd");
                 hasShield = false;
                 escudo.SetActive(false);
             }
@@ -106,6 +107,7 @@ public class PlayerController : MonoBehaviour
             case "Egg":
                 ActivateShield();
                 Destroy(other.gameObject);
+                FindObjectOfType<AudioManager>().Play("EggShield");
                 break;
             case "Pontuador":
                 Pontos.QtdPts += 2;
@@ -129,11 +131,17 @@ public class PlayerController : MonoBehaviour
                 if (_hc.currentLifes <= 4)
                 {
                     _hc.GainHealth(1);
+                    FindObjectOfType<AudioManager>().Play("Pena");
                 }
                 //else
                 //{
                     //Pontos.QtdPts += 11;
                 //}
+                Destroy(other.gameObject);
+                break;
+            case "PointCorn":           
+                Pontos.QtdPts += 1;
+                FindObjectOfType<AudioManager>().Play("Milho");
                 Destroy(other.gameObject);
                 break;
         }
